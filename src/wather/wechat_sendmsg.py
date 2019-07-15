@@ -46,11 +46,14 @@ def wendu(code):
     forecast_high = "最高温度：" + str(data['forecast'][0]['high'].split()[1])
 
     forecast_low = "最低温度：" + str(data['forecast'][0]['low'].split()[1])
-
+    forecast_week=   str(data['forecast'][0]['week'])
+    forecast_type = "天气：" + str(data['forecast'][0]['type'])
     ganmao = '感冒提醒（指数）：' + str(data['ganmao'])
-
-    nr = city + "\n" \
-         + time + "\n" \
+    forecast_notice =  str(data['forecast'][0]['notice'])
+    tip = 'Stephen提醒您：'+forecast_notice
+    nr =  city + "\n" \
+         + time +"  "+forecast_week+ "\n" \
+        +forecast_type+"\n" \
          + shidu + "\n" \
          + pm25 + "\n" \
          + pm10 + "\n" \
@@ -58,7 +61,8 @@ def wendu(code):
          + forecast_high + "\n" \
          + forecast_low + "\n" \
          + ganmao + "\n" \
-         + 'Stephen祝您新的一天心情愉快！'
+         + tip+ "\n" \
+         +"祝您新的一天心情愉快！"
     print(nr)
     return nr
 
@@ -104,15 +108,13 @@ def send_new(code, grouplist_atrr=[], friendList_atrr=[]):
         print('发送消息失败')
 
 
-
-
 def timeSend():
     t = time.localtime()
     dt = time.strftime("%H:%M", t)
     print(dt)
-    if dt=='06:00':
+    if dt == '06:00':
         print('发送')
-        sendJing()
+        sendAll()
 
     ttimer = Timer(59, timeSend)
     ttimer.start()
@@ -120,24 +122,33 @@ def timeSend():
 
 def sendJing():
     send_new(cityCode.SUZHOU, [], ['静宝'])
+
+
 def sendAll():
     # 徐洲
-    send_new(cityCode.XUZHOU, ['八兄弟', '七兄弟','地主家的傻姑娘群'],['侯菲','马诚','马欣','马诚诚'])
+    send_new(cityCode.XUZHOU, ['八兄弟', '七兄弟', '地主家的傻姑娘群'], ['侯菲', '马诚', '马欣', '马诚诚'])
     # 苏州
-    send_new(cityCode.SUZHOU, ['八兄弟','群英汇','苏州起点羽球周三','黑枸杞研发群'],['静宝','李宁'])
-    #江阴
-    send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人'],['坤哥'])
+    send_new(cityCode.SUZHOU, ['八兄弟', '群英汇', '苏州起点羽球周三', '黑枸杞研发群'], ['静宝', '李宁', '周琦', '王平'])
+    # 江阴
+    send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人'], ['坤哥'])
     # 安吉
-    send_new(cityCode.ANJI,['八兄弟'],['罗飞湖州','阿廖'])
+    send_new(cityCode.ANJI, ['八兄弟'], ['罗飞湖州', '阿廖'])
     # 嘉兴
-    send_new(cityCode.JIAXING,[],['王波','王闯'])
+    send_new(cityCode.JIAXING, [], ['王波', '王闯'])
     # 砀山
-    send_new(countyCode.DANGSHAN,['蒋氏家族'],[])
+    send_new(countyCode.DANGSHAN, ['蒋氏家族'], [])
     # 南京
     send_new(cityCode.NANJING, ['人小组', '地主家的傻姑娘群'], ['阔比', '吕顺法'])
+    # 杭州
+    send_new(cityCode.HANGZHOU, [], ['Zora', '李振'])
+    # 北京
+    send_new(cityCode.BEIJING, [], ['范忠臣'])
+
 
 if __name__ == '__main__':
     timeSend()
     # send_new(cityCode.NANJING, ['人小组', '地主家的傻姑娘群'], ['阔比', '吕顺法'])
-
-
+    # 北京
+    # send_new(cityCode.BEIJING, [], ['范忠臣'])
+    # 江阴
+    # send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人'], ['坤哥'])

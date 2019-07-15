@@ -22,12 +22,16 @@ proviceCode.JIANGSU = '19'
 proviceCode.HUBEI = '20'
 proviceCode.ZHEJIANG = '21'
 proviceCode.ANHUI = '22'
+proviceCode.BEIJING = '22'
 
 cityCode = _code()
 cityCode.SUZHOU = proviceCode.JIANGSU + '0401'
 cityCode.NANJING = proviceCode.JIANGSU + '0101'
 cityCode.XUZHOU = proviceCode.JIANGSU + '0801'
 cityCode.JIANGYIN = proviceCode.JIANGSU + '0202'
+cityCode.BEIJING = '010100'
+
+
 
 # 浙江
 cityCode.JIAXING = proviceCode.ZHEJIANG + '0301'
