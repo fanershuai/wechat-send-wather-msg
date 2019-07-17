@@ -46,14 +46,14 @@ def wendu(code):
     forecast_high = "最高温度：" + str(data['forecast'][0]['high'].split()[1])
 
     forecast_low = "最低温度：" + str(data['forecast'][0]['low'].split()[1])
-    forecast_week=   str(data['forecast'][0]['week'])
+    forecast_week = str(data['forecast'][0]['week'])
     forecast_type = "天气：" + str(data['forecast'][0]['type'])
     ganmao = '感冒提醒（指数）：' + str(data['ganmao'])
-    forecast_notice =  str(data['forecast'][0]['notice'])
-    tip = 'Stephen提醒您：'+forecast_notice
-    nr =  city + "\n" \
-         + time +"  "+forecast_week+ "\n" \
-        +forecast_type+"\n" \
+    forecast_notice = str(data['forecast'][0]['notice'])
+    tip = 'Stephen提醒您：' + forecast_notice
+    nr = city + "\n" \
+         + time + "  " + forecast_week + "\n" \
+         + forecast_type + "\n" \
          + shidu + "\n" \
          + pm25 + "\n" \
          + pm10 + "\n" \
@@ -61,8 +61,8 @@ def wendu(code):
          + forecast_high + "\n" \
          + forecast_low + "\n" \
          + ganmao + "\n" \
-         + tip+ "\n" \
-         +"祝您新的一天心情愉快！"
+         + tip + "\n" \
+         + "祝您新的一天心情愉快！"
     print(nr)
     return nr
 
@@ -87,7 +87,11 @@ def send_new(code, grouplist_atrr=[], friendList_atrr=[]):
 
         if grouplist_atrr is not None:
             for i in range(len(grouplist_atrr)):
-                get_group_by_name(grouplist_atrr[i], 0).send(content)
+                a = str(grouplist_atrr[i])
+                if '无锡新恒' in a:
+                    get_group_by_name(grouplist_atrr[i], 0).send(content.replace("Stephen", '范帅'))
+                else:
+                    get_group_by_name(grouplist_atrr[i], 0).send(content)
 
         if friendList_atrr is not None:
             for i in range(len(friendList_atrr)):
@@ -128,11 +132,11 @@ def sendAll():
     # 徐洲
     send_new(cityCode.XUZHOU, ['八兄弟', '七兄弟', '地主家的傻姑娘群'], ['侯菲', '马诚', '马欣', '马诚诚'])
     # 苏州
-    send_new(cityCode.SUZHOU, ['八兄弟', '群英汇', '苏州起点羽球周三', '黑枸杞研发群'], ['静宝', '李宁', '周琦', '王平'])
+    send_new(cityCode.SUZHOU, ['八兄弟', '群英汇', '苏州起点羽球周三', '黑枸杞研发群'], ['静宝', '李宁', '王平', '吴静'])
     # 江阴
-    send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人'], ['坤哥'])
+    send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人', '无锡新恒'], ['坤哥'])
     # 安吉
-    send_new(cityCode.ANJI, ['八兄弟'], ['罗飞湖州', '阿廖'])
+    send_new(cityCode.ANJI, ['八兄弟'], ['罗飞湖州', '阿廖', '洛克'])
     # 嘉兴
     send_new(cityCode.JIAXING, [], ['王波', '王闯'])
     # 砀山
@@ -143,6 +147,8 @@ def sendAll():
     send_new(cityCode.HANGZHOU, [], ['Zora', '李振'])
     # 北京
     send_new(cityCode.BEIJING, [], ['范忠臣'])
+    # 无锡
+    send_new(cityCode.WUXI, [], ['周琦'])
 
 
 if __name__ == '__main__':
@@ -151,4 +157,7 @@ if __name__ == '__main__':
     # 北京
     # send_new(cityCode.BEIJING, [], ['范忠臣'])
     # 江阴
-    # send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人'], ['坤哥'])
+    # send_new(cityCode.JIANGYIN, ['主赐福，蒙主恩一家人', '无锡新恒'], [])
+    # send_new(cityCode.WUXI, [], ['周琦'])
+  # 江阴
+    send_new(cityCode.JIANGYIN, [ '无锡新恒'],)

@@ -29,6 +29,7 @@ cityCode.SUZHOU = proviceCode.JIANGSU + '0401'
 cityCode.NANJING = proviceCode.JIANGSU + '0101'
 cityCode.XUZHOU = proviceCode.JIANGSU + '0801'
 cityCode.JIANGYIN = proviceCode.JIANGSU + '0202'
+cityCode.WUXI = proviceCode.JIANGSU + '0201'
 cityCode.BEIJING = '010100'
 
 
